@@ -18,30 +18,37 @@ distributeGifts(packOfGifts, reindeers) // 2
  */
 const packOfGifts = ["book", "doll", "ball"]
 const reindeers = ["dasher", "dancer"]
+// const packOfGifts = ['a', 'b', 'c']
+// const reindeers = ['d', 'e']
 
 function distributeGifts(packOfGifts, reindeers) {
-    let peso_renos=0; 
-    let numero_cajas= 0; 
-   
-    for (let i = 0; i < reindeers.length; i++) {
-        peso_renos += (reindeers[i].length*2);         
-    }
-    calcularPesos(packOfGifts, peso_renos)
-}
-
-function calcularPesos(packOfGifts, peso_renos) {
-    let peso_regalos = 0; 
-    if(peso_regalos < peso_renos) {
+    let peso_renos = 0;
+     let num_cajas = 0;
+     let ban = true;
+     let peso_regalo = 0;
+     
+     for (let i = 0; i < reindeers.length; i++) {
+         peso_renos += (reindeers[i].length * 2);
+     }
+ 
+     while (ban) {
         for (let index = 0; index < packOfGifts.length; index++) {
-            peso_regalos =+ packOfGifts[index].length;
-            
+            peso_regalo += packOfGifts[index].length;
         }
-    }else{
-        return false; 
-    }
-    
-}
 
+        console.log(`peso regalos: ${peso_regalo}`);
+        console.log(`peso renos: ${peso_renos}`);
+        console.log(`num cajas: ${num_cajas}`);
+        console.log(`${peso_regalo<=peso_renos}`);
+        if (peso_regalo <= peso_renos) {
+             num_cajas++; 
+         }else{
+             ban = false;
+         }              
+     }
+     console.log(`peso renos: ${peso_renos},  num cajas: ${num_cajas}`); 
+    //  return num_cajas; 
+ }
 
 
 distributeGifts(packOfGifts, reindeers)
