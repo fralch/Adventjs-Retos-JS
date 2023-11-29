@@ -3,44 +3,29 @@ const boxes = [
     { l: 2, w: 2, h: 2 },
     { l: 3, w: 1, h: 3 }
   ] // false
-  const boxes2 = [
-    { l: 1, w: 1, h: 1 },
-    { l: 3, w: 3, h: 3 },
-    { l: 2, w: 2, h: 2 }
-  ]// true
+ 
+
+// como puedo saber si una caja cabe dentro de otra caja  los valores de las cajas son l = largo, w = ancho, h = alto
+// si una caja cabe dentro de otra caja entonces es true de lo contrario es false se puede cambiar el orden de las cajas o objetos
 
 
-  
+const fitsInOneBox = (boxes) => {    
+    let result = false; 
 
-function fitsInOneBox(obj) {
-    obj.forEach((caja, index)=>{
-        // console.log(typeof caja); 
-       let suma = sumar(caja); 
-       console.log(suma); 
-    }); 
+    for (let i = 0; i < boxes.length; i++) {
+      if(boxes[i+1] !== undefined){
+        if (boxes[i].l < boxes[i+1]?.l && boxes[i].w < boxes[i+1]?.w && boxes[i].h < boxes[i+1]?.h) {
+          result = true;
+        } else {
+           result = false;
+       }
+      }
+      
+    }
+   
 }
 
-function comparar(objeto1, objeto2) {
-    let resultado = 0;
   
-    for (const propiedad of Object.keys(objeto1)) {
-      const valor1 = objeto1[propiedad];
-      const valor2 = objeto2[propiedad];
-  
-      // Compara los valores de las propiedades correspondientes
-      if (valor1 !== valor2) {
-        // Las propiedades no son iguales
-        resultado = valor1 < valor2 ? -1 : 1;
-        break;
-      }
-    }
-  
-    if (resultado === 0) {
-      // Los objetos son iguales
-      resultado = 0;
-    }
-  
-    return resultado;
-  }
-
-fitsInOneBox(boxes); 
+  // TEST CASES
+  // fitsInOneBox(boxes)
+  console.log(fitsInOneBox(boxes)) // false
